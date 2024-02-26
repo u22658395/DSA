@@ -30,25 +30,38 @@ public class RecursiveArray {
     public void append(Integer value) {
         Integer[] tempArr = new Integer[array.length+1];
 
-        helperInsert(tempArr, 0, array.length);
+        appendHelper(tempArr, 0, array.length);
         tempArr[array.length] = value;
         array = tempArr;
     }
 
     public void prepend(Integer value) {
+        Integer[] tempArr = new Integer[array.length+1];
 
+        tempArr[0] = value;
+        preppendHelper(tempArr, 1, array.length+1);
+        array = tempArr;
     }
 
     public boolean contains(Integer value) {
-        return false;
+
+        return containsHelper(value, 0);
     }
 
     public boolean isAscending() {
-        return false;
+        if(array.length == 1){
+            return true;
+        }
+
+        return ascHelper(1);
     }
 
     public boolean isDescending() {
-        return false;
+        if(array.length == 1){
+            return true;
+        }
+
+        return descHelper(1);
     }
 
     public void sortAscending() {
@@ -82,10 +95,54 @@ public class RecursiveArray {
         }
     }
 
-    private void helperInsert(Integer[] tempArr, int index, int end) {  
+    private void appendHelper(Integer[] tempArr, int index, int end) {  
         if(index < end){
             tempArr[index] = array[index];
-            helperInsert(tempArr, ++index, end);
+            appendHelper(tempArr, ++index, end);
         }
     }
+    
+    private void preppendHelper(Integer[] tempArr, int index, int end) {  
+        if(index < end){
+            tempArr[index] = array[index-1];
+            preppendHelper(tempArr, ++index, end);
+        }
+    }
+
+    private boolean containsHelper(Integer val, int index) {  
+        if(index < array.length ){
+            if(array[index] == val)
+                return true;
+        }
+        else{
+            return false;
+        }
+            
+        return containsHelper(val, ++index);
+    }
+
+    private boolean ascHelper(int index){
+        if(index >= array.length){
+            return true;
+        }
+
+        if(array[index] < array[index-1]){
+            return false;
+        }
+
+        return ascHelper(++index);
+    }
+
+    private boolean descHelper(int index){
+        if(index >= array.length){
+            return true;
+        }
+
+        if(array[index] > array[index-1]){
+            return false;
+        }
+
+        return descHelper(++index);
+    }
+
 }
