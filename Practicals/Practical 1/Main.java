@@ -9,6 +9,8 @@ public class Main {
 
         testAsc();
         testDesc();
+        sortAsc();
+        sortDesc();
     }
 
     private static void testConstructor(){
@@ -128,6 +130,57 @@ public class Main {
         System.out.println(arr);
         System.out.println(arr.isDescending() + "\n");
 
+    }
+
+    private static void sortAsc(){
+        System.out.println("====Testing sortAsc====Testing sortAsc====Testing sortAsc====Testing sortAsc====");
+
+        RecursiveArray arr = new RecursiveArray();
+        System.out.println(arr);
+        arr.sortAscending();
+        System.out.println( arr + "\n");
+
+        arr = new RecursiveArray("1,2,3,4,5,6,7");
+        System.out.println(arr);
+        arr.sortAscending();
+        System.out.println( arr + "\n");
+
+        arr = new RecursiveArray("9,9,8,7,6,5,4");
+        System.out.println(arr);
+        arr.sortAscending();
+        System.out.println( arr + "\n");
+
+        arr = new RecursiveArray("1,3,4,5,6,12,3");
+        System.out.println(arr);
+        arr.sortAscending();
+        System.out.println( arr + "\n");
+
+        
+
+    }
+
+    private static void sortDesc(){
+        System.out.println("====Testing sortDesc====Testing sortDesc====Testing sortDesc====Testing sortDesc====");
+
+        RecursiveArray arr = new RecursiveArray();
+        System.out.println(arr);
+        arr.sortDescending();
+        System.out.println( arr + "\n");
+
+        arr = new RecursiveArray("1,2,3,4,5,6,7");
+        System.out.println(arr);
+        arr.sortDescending();
+        System.out.println( arr + "\n");
+
+        arr = new RecursiveArray("9,9,8,7,6,5,4");
+        System.out.println(arr);
+        arr.sortDescending();
+        System.out.println( arr + "\n");
+
+        arr = new RecursiveArray("1,3,4,5,6,12,3");
+        System.out.println(arr);
+        arr.sortDescending();
+        System.out.println( arr + "\n");
     }
 
 }
