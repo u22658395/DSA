@@ -10,6 +10,7 @@ public class Main {
         testContains();
         testLength();
         testReverse();
+        testMaze();
     }
 
 
@@ -121,5 +122,15 @@ public class Main {
         System.out.println(ll.reversed() +"\n");
 
 
+    }
+
+    private static void testMaze(){
+        System.out.println("=========Test Maze============Test Maze============Test Maze============Test Maze============");
+
+        Maze m = new Maze("input.txt");
+        System.out.println(m + "\n");
+
+        Maze k = new Maze(m);
+        System.out.println(k + "\n");
     }
 }
