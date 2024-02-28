@@ -127,6 +127,9 @@ public class Main {
     private static void testMaze(){
         System.out.println("=========Test Maze============Test Maze============Test Maze============Test Maze============");
 
+        Maze o = new Maze("wrongFile.txt");
+        System.out.println(o + "\n");
+
         Maze m = new Maze("input.txt");
         System.out.println(m + "\n");
 
