@@ -8,6 +8,8 @@ public class Main {
 
         testAppend();
         testContains();
+        testLength();
+        testReverse();
     }
 
 
@@ -55,6 +57,8 @@ public class Main {
     }
 
     private static void testContains(){
+        System.out.println("=========Test contains============Test contains============Test contains============Test contains============");
+
         LinkedList ll = new LinkedList();
         System.out.println(ll);
         System.out.println("Contains 0,0: "+ll.contains(0, 0) +"\n");
@@ -70,5 +74,52 @@ public class Main {
         System.out.println("Contains 0,0: "+ll.contains(0, 0));
         System.out.println("Contains 3,1: "+ll.contains(3, 1));
         System.out.println("Contains 0,1: "+ll.contains(0, 1) +"\n");
+    }
+
+    private static void testLength(){
+        System.out.println("=========Test length============Test length============Test length============Test length============");
+
+        LinkedList ll = new LinkedList();
+        System.out.println(ll);
+        System.out.println("Length: "+ ll.length() +"\n");
+        
+        ll.append(65, 0);
+        System.out.println(ll);
+        System.out.println("Length: "+ ll.length() +"\n");
+
+        
+        ll = new LinkedList(1,1);
+        System.out.println(ll);
+        System.out.println("Length: "+ ll.length() +"\n");
+
+        ll = new LinkedList(1,1);
+        ll.append(145, 65);
+        System.out.println(ll);
+        System.out.println("Length: "+ ll.length() +"\n");
+        
+        ll.append(300, 65);
+        System.out.println(ll);
+        System.out.println("Length: "+ ll.length() +"\n");
+
+    }
+
+    private static void testReverse(){
+        System.out.println("=========Test Reverse============Test Reverse============Test Reverse============Test Reverse============");
+
+        LinkedList ll = new LinkedList();
+        System.out.println("Original List: \n" + ll);
+        System.out.println(ll.reversed() +"\n");
+
+        ll = new LinkedList(0,0);
+        System.out.println("Original List: \n" + ll);
+        System.out.println(ll.reversed() +"\n");
+
+        ll.append(11, 54);
+        ll.append(32, 47);
+        ll.append(9, 100);
+        System.out.println("Original List: \n" + ll);
+        System.out.println(ll.reversed() +"\n");
+
+
     }
 }

@@ -47,11 +47,17 @@ public class LinkedList {
     }
 
     public int length() {
-        return 0;
+        return count(head);
     }
 
     public LinkedList reversed() {
-        return null;
+        if(head == null){
+            return new LinkedList();
+        }
+        
+        LinkedList copy = new LinkedList();
+        reverseHelper(copy, head);
+        return copy;
     }
 
 
@@ -97,5 +103,20 @@ public class LinkedList {
         }
             
         return containsHelper(curr.next, x,y);
+    }
+
+    private int count(CoordinateNode curr){
+        if(curr == null){
+            return 0;
+        }
+        return 1 + count(curr.next);
+    }
+
+    private void reverseHelper(LinkedList copy, CoordinateNode curr){
+        if(curr != null){
+            reverseHelper(copy, curr.next);
+            copy.append(curr.x, curr.y);
+            // System.out.println(copy);
+        }
     }
 }
