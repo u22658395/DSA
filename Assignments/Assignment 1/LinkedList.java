@@ -22,17 +22,20 @@ public class LinkedList {
     }
 
     public void appendList(LinkedList other) {
-        if(head == null)
-        {
-            head = other.head;
-        }
-        else{
-            appendListHelper(other, head);
+        if(other != null){
+            if(head == null)
+            {
+                
+                head = other.head;
+            }
+            else{
+                appendListHelper(other, head);
+            }
         }
     }
 
     public boolean contains(int x, int y) {
-        return false;
+        return containsHelper(head, x, y);
     }
 
     @Override
@@ -82,5 +85,17 @@ public class LinkedList {
         }
         
         
+    }
+
+    private boolean containsHelper(CoordinateNode curr, int x, int y) {  
+        if(curr == null ){
+            return false;
+        }
+        else{
+            if(curr.x == x && curr.y == y )
+                return true;
+        }
+            
+        return containsHelper(curr.next, x,y);
     }
 }

@@ -7,6 +7,7 @@ public class Main {
 
 
         testAppend();
+        testContains();
     }
 
 
@@ -47,5 +48,27 @@ public class Main {
         System.out.println("Linked List to append to: " + ll);
         ll.appendList(l2);
         System.out.println(ll + "\n");
+        
+        System.out.println("Linked List to append: " + null);
+        ll.appendList(null);
+        System.out.println(ll + "\n");
+    }
+
+    private static void testContains(){
+        LinkedList ll = new LinkedList();
+        System.out.println(ll);
+        System.out.println("Contains 0,0: "+ll.contains(0, 0) +"\n");
+        
+        ll = new LinkedList(0,0);
+        System.out.println(ll);
+        System.out.println("Contains 0,0: "+ll.contains(0, 0));
+        System.out.println("Contains 0,1: "+ll.contains(0, 1) +"\n");
+        
+        ll = new LinkedList(0,0);
+        ll.append(3, 1);
+        System.out.println(ll);
+        System.out.println("Contains 0,0: "+ll.contains(0, 0));
+        System.out.println("Contains 3,1: "+ll.contains(3, 1));
+        System.out.println("Contains 0,1: "+ll.contains(0, 1) +"\n");
     }
 }
