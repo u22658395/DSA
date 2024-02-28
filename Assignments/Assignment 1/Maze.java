@@ -49,6 +49,11 @@ public class Maze {
         return null;
     }
 
+
+
+
+//======Helper Functions==============Helper Functions==============Helper Functions==============Helper Functions==============Helper Functions==============Helper Functions==============Helper Functions========
+
     private void constructorHelper(Scanner scanner, int index, int n){
         if(index < n){
             map[index] = scanner.nextLine();
