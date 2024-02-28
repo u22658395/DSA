@@ -116,7 +116,6 @@ public class LinkedList {
         if(curr != null){
             reverseHelper(copy, curr.next);
             copy.append(curr.x, curr.y);
-            // System.out.println(copy);
         }
     }
 }
