@@ -47,5 +47,9 @@ public class Main {
         System.out.println("Linked List to append to: " + ll);
         ll.appendList(l2);
         System.out.println(ll + "\n");
+        
+        System.out.println("Linked List to append: " + null);
+        ll.appendList(null);
+        System.out.println(ll + "\n");
     }
 }

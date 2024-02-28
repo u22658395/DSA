@@ -22,12 +22,15 @@ public class LinkedList {
     }
 
     public void appendList(LinkedList other) {
-        if(head == null)
-        {
-            head = other.head;
-        }
-        else{
-            appendListHelper(other, head);
+        if(other != null){
+            if(head == null)
+            {
+                
+                head = other.head;
+            }
+            else{
+                appendListHelper(other, head);
+            }
         }
     }
 
