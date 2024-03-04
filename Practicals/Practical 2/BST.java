@@ -216,7 +216,7 @@ public class BST<T extends Comparable<T>> {
             return  current;
         }
 
-        return findMaxHelper(current.left);
+        return findMinHelper(current.left);
     }
 
     private BinaryNode<T> getNodeHelper(BinaryNode<T> current, T data){
