@@ -24,7 +24,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     public int getHeight() {
-        return 0;
+        return getHeightHelper(root);
     }
 
     public String printSearchPath(T data) {
@@ -234,30 +234,42 @@ public class BST<T extends Comparable<T>> {
         
         return getNodeHelper(current.right, data);
     }
-    private boolean superficialHelper(BinaryNode<T> node){
-        if (node == null) {
+
+    private boolean superficialHelper(BinaryNode<T> current){
+        if (current == null) {
             return true;
         }
 
        
-        int leftNodes = countNodes(node.left); // number of nodes in the left subtree
-        int rightNodes = countNodes(node.right); // number of nodes in the right subtree
+        int leftNodes = countNodes(current.left); // number of nodes in the left subtree
+        int rightNodes = countNodes(current.right); // number of nodes in the right subtree
 
 
         boolean currentlyBalanced = leftNodes == rightNodes;
 
         
-        boolean leftSubtreeBalance = superficialHelper(node.left); //check balance in left subtree
-        boolean rightSubtreeBalance = superficialHelper(node.right); //check balance in left subtree
+        boolean leftSubtreeBalance = superficialHelper(current.left); //check balance in left subtree
+        boolean rightSubtreeBalance = superficialHelper(current.right); //check balance in left subtree
 
         return  currentlyBalanced && leftSubtreeBalance && rightSubtreeBalance;
     }
 
 
-    private int countNodes(BinaryNode<T> node) {
-        if (node == null) {
+    private int countNodes(BinaryNode<T> current) {
+        if (current == null) {
             return 0;
         }
-        return 1 + countNodes(node.left) + countNodes(node.right);
+        return 1 + countNodes(current.left) + countNodes(current.right);
+    }
+    
+    private int getHeightHelper(BinaryNode<T> current) {
+        if (current == null) {
+            return 0;
+        }
+
+        int leftSubHeight = getHeightHelper(current.left);
+        int rightSubHeight = getHeightHelper(current.right);
+
+        return Math.max(leftSubHeight, rightSubHeight) + 1;
     }
 }

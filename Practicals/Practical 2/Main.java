@@ -11,6 +11,7 @@ public class Main {
         testMinMax(tree);
         testGetNode(tree);
         testBalance(tree);
+        testHeight(tree);
 
     }
 
@@ -239,7 +240,20 @@ public class Main {
         
         System.out.println("Tree:\n"+tree);
         System.out.println(tree.isSuperficiallyBalanced()+"\n");
+    }
 
+    private static void testHeight(BST<Integer> tree){
+        System.out.println("====Testing getHeight=========Testing getHeight=========Testing getHeight=========");
 
+        BST<Integer> t = new BST<Integer>();
+        System.out.println("Tree:\n"+t);
+        System.out.println(t.getHeight()+"\n");    
+        
+        t.insert(8);
+        System.out.println("Tree:\n"+t);
+        System.out.println(t.getHeight()+"\n");    
+        
+        System.out.println("Tree:\n"+tree);
+        System.out.println(tree.getHeight()+"\n");    
     }
 }
