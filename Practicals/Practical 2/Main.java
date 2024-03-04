@@ -7,6 +7,7 @@ public class Main {
         testDelete(tree);
         testContains(tree);
         testPrintSearch(tree);
+        testNumLeaves(tree);
 
     }
 
@@ -127,6 +128,10 @@ public class Main {
         System.out.println("Delete 1:");
         tree.delete(1);
         System.out.println(tree+"\n");
+        
+        System.out.println("Delete 40:");
+        tree.delete(40);
+        System.out.println(tree+"\n");
     }
 
     private static void testContains(BST<Integer> tree){
@@ -168,6 +173,16 @@ public class Main {
         
         System.out.println("Search Path of 81:"); //non-terminal node
         System.out.println(tree.printSearchPath(81)+"\n");
+
+    }
+
+    private static void testNumLeaves(BST<Integer> tree){
+        System.out.println("====Testing NumLeaves=========Testing NumLeaves=========Testing NumLeaves=========Testing NumLeaves=========Testing NumLeaves=========Testing NumLeaves=====");
+        System.out.println("Num leaves: "+tree.getNumLeaves() + "\n");
+
+        BST<Integer> emptTree = new BST<Integer>();
+        System.out.println(emptTree);
+        System.out.println("Num leaves: "+emptTree.getNumLeaves());
 
     }
 }

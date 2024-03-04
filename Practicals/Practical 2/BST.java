@@ -33,7 +33,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     public int getNumLeaves() {
-        return 0;
+        return countLeafHelper(root);
     }
 
     public BST<T> extractBiggestSuperBalancedSubTree() {
@@ -171,5 +171,23 @@ public class BST<T extends Comparable<T>> {
 
         return node.data.toString() +" -> " + printSearchHelper(node.left, data);
 
+    }
+
+    private int countLeafHelper(BinaryNode<T> current) {
+        if (current == null) {
+            return 0;
+        }
+
+        // If the current node is a terminal node, return 1
+        if (current.left == null && current.right == null) {
+            return 1;
+        }
+
+        //count the number of terminal nodes in the left and right subtrees
+        int leftTeminal = countLeafHelper(current.left);
+        int rightTerminal = countLeafHelper(current.right);
+
+        // Return the sum of terminal nodes in the left and right subtrees
+        return leftTeminal + rightTerminal;
     }
 }
