@@ -44,7 +44,7 @@ public class BST<T extends Comparable<T>> {
         return getNodeHelper(root, data);
     }
 
-    public boolean isSuperBalanced() {
+    public boolean isSuperficiallyBalanced() {
         return false;
     }
 
