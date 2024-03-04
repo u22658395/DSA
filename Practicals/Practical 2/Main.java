@@ -32,27 +32,27 @@ public class Main {
 
         //Inserting a bigger number
         tree.insert(60);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 60:\n" + tree);
         tree.insert(60);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 60:\n" + tree);
 
         //Inserting a bigger number
         tree.insert(40);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 40:\n" + tree);
         tree.insert(40);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 40:\n" + tree);
 
         //Inserting a bigger number
         tree.insert(90);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 90:\n" + tree);
         tree.insert(90);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 90:\n" + tree);
 
         //Inserting a bigger number
         tree.insert(29);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 29:\n" + tree);
         tree.insert(29);
-        System.out.println("Insert 77:\n" + tree);
+        System.out.println("Insert 29:\n" + tree);
 
     }
 }

@@ -96,8 +96,7 @@ public class BST<T extends Comparable<T>> {
                     insertHelper(current.left, data);
                 }
             }
-            else
-                return;
+            
         }
     }
 }
