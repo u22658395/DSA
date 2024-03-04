@@ -8,6 +8,8 @@ public class Main {
         testContains(tree);
         testPrintSearch(tree);
         testNumLeaves(tree);
+        testMinMax(tree);
+        testGetNode(tree);
 
     }
 
@@ -182,7 +184,34 @@ public class Main {
 
         BST<Integer> emptTree = new BST<Integer>();
         System.out.println(emptTree);
-        System.out.println("Num leaves: "+emptTree.getNumLeaves());
+        System.out.println("Num leaves: "+emptTree.getNumLeaves()+ "\n");
 
+    }
+
+    private static void testMinMax(BST<Integer> tree) {
+        System.out.println("====Testing findMax and findMin=========Testing findMax and findMin=========");
+        System.out.println("Min: "+tree.findMin());
+        System.out.println("Max: "+tree.findMax());
+    }
+
+    private static void testGetNode(BST<Integer> tree){
+        System.out.println("====Testing getNode=========Testing getNode=========Testing getNode=========");
+        System.out.println("Tree"+"\n");
+        System.out.println(tree+"\n");
+
+        System.out.println("get Node 1000:"); //value never been in the tree
+        System.out.println(tree.getNode(1000)+"\n");
+        
+        System.out.println("get Node 33:"); //value deleted from the tree
+        System.out.println(tree.getNode(33)+"\n");
+        
+        System.out.println("get Node 51:"); //the root
+        System.out.println(tree.getNode(51)+"\n");
+        
+        System.out.println("get Node 100:");//leaf node
+        System.out.println(tree.getNode(100)+"\n");
+        
+        System.out.println("get Node 81:"); //non-terminal node
+        System.out.println(tree.getNode(81)+"\n");
     }
 }

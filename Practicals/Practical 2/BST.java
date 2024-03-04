@@ -41,7 +41,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     public BinaryNode<T> getNode(T data) {
-        return null;
+        return getNodeHelper(root, data);
     }
 
     public boolean isSuperBalanced() {
@@ -49,11 +49,11 @@ public class BST<T extends Comparable<T>> {
     }
 
     public BinaryNode<T> findMax() {
-        return null;
+        return findMaxHelper(root);
     }
 
     public BinaryNode<T> findMin() {
-        return null;
+        return findMinHelper(root);
     }
 
     ///////////////
@@ -190,4 +190,47 @@ public class BST<T extends Comparable<T>> {
         // Return the sum of terminal nodes in the left and right subtrees
         return leftTeminal + rightTerminal;
     }
+
+    private BinaryNode<T> findMaxHelper(BinaryNode<T> current){
+        if(current == null)
+        {
+            return null;
+        }
+
+        if(current.right == null){
+            return  current;
+        }
+
+        return findMaxHelper(current.right);
+    }
+    
+    private BinaryNode<T> findMinHelper(BinaryNode<T> current){
+        if(current == null)
+        {
+            return null;
+        }
+
+        if(current.left == null){
+            return  current;
+        }
+
+        return findMaxHelper(current.left);
+    }
+
+    private BinaryNode<T> getNodeHelper(BinaryNode<T> current, T data){
+        if(current == null){
+            return null;
+        }
+
+        if(current.data.equals(data)){
+            return current;
+        }
+
+        if(current.data.compareTo(data) > 0){
+            return getNodeHelper(current.left, data);
+        }
+        
+        return getNodeHelper(current.right, data);
+    }
+
 }
