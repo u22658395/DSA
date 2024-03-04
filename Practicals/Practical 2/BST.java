@@ -178,17 +178,19 @@ public class BST<T extends Comparable<T>> {
             return 0;
         }
 
-        // If the current node is a terminal node, return 1
-        if (current.left == null && current.right == null) {
-            return 1;
+        
+        if (current.left == null) {   // If the current node is a terminal node, return 1
+            if(current.right == null)
+            {
+                return 1;
+            }
         }
 
         //count the number of terminal nodes in the left and right subtrees
         int leftTeminal = countLeafHelper(current.left);
         int rightTerminal = countLeafHelper(current.right);
 
-        // Return the sum of terminal nodes in the left and right subtrees
-        return leftTeminal + rightTerminal;
+        return leftTeminal + rightTerminal; // Return the sum 
     }
 
     private BinaryNode<T> findMaxHelper(BinaryNode<T> current){
