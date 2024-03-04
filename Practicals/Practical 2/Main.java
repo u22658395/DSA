@@ -6,7 +6,8 @@ public class Main {
         testInsert(tree);
         testDelete(tree);
         testContains(tree);
-        
+        testPrintSearch(tree);
+
     }
 
     private static void testInsert(BST<Integer> tree){
@@ -148,5 +149,25 @@ public class Main {
         System.out.println("Contains 81:"); //non-terminal node
         System.out.println(tree.contains(81)+"\n");
         
+    }
+
+    private static void testPrintSearch(BST<Integer> tree){
+        System.out.println("====Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=====");
+
+        System.out.println("Search Path of 1000:"); //value never been in the tree
+        System.out.println(tree.printSearchPath(1000)+"\n");
+        
+        System.out.println("Search Path of 33:"); //value deleted from the tree
+        System.out.println(tree.printSearchPath(33)+"\n");
+        
+        System.out.println("Search Path of 51:"); //the root
+        System.out.println(tree.printSearchPath(51)+"\n");
+        
+        System.out.println("Search Path of 100:");//leaf node
+        System.out.println(tree.printSearchPath(100)+"\n");
+        
+        System.out.println("Search Path of 81:"); //non-terminal node
+        System.out.println(tree.printSearchPath(81)+"\n");
+
     }
 }

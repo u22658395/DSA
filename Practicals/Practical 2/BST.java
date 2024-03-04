@@ -28,7 +28,8 @@ public class BST<T extends Comparable<T>> {
     }
 
     public String printSearchPath(T data) {
-        return "";
+
+        return printSearchHelper(root, data);
     }
 
     public int getNumLeaves() {
@@ -152,5 +153,23 @@ public class BST<T extends Comparable<T>> {
         }
         
         return containsHelper(current.right, data);
+    }
+
+    private String printSearchHelper(BinaryNode<T> node, T data){
+        if(node == null)
+        {
+            return null;
+        }
+
+        if(node.data.equals(data)){
+            return node.data.toString();
+        }
+
+        if (node.data.compareTo(data) < 0) {
+            return node.data.toString() +" -> " + printSearchHelper(node.right, data);
+        }
+
+        return node.data.toString() +" -> " + printSearchHelper(node.left, data);
+
     }
 }
