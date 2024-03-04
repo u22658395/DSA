@@ -3,7 +3,7 @@ public class BST<T extends Comparable<T>> {
     BinaryNode<T> root;
 
     public BST() {
-
+        root = null;
     }
 
     public void delete(T data) {
@@ -15,7 +15,12 @@ public class BST<T extends Comparable<T>> {
     }
 
     public void insert(T data) {
-
+        if (root == null) {
+            root = new BinaryNode<T>(data);
+        }
+        else{
+            insertHelper(root, data);
+        }
     }
 
     public int getHeight() {
@@ -68,4 +73,31 @@ public class BST<T extends Comparable<T>> {
         return root == null ? "Empty tree" : toString(root, new StringBuilder(), true, new StringBuilder()).toString();
     }
 
+
+    //=======Helper Functions=================Helper Functions=================Helper Functions=================Helper Functions=================Helper Functions=================Helper Functions=================Helper Functions==========
+
+    private void insertHelper(BinaryNode<T> current, T data) {
+        if(current.data.compareTo(data) < 0){
+            if(current.right == null){
+                current.right = new BinaryNode<T>(data);
+                return;
+            }
+            else{
+                insertHelper(current.right, data);
+            }
+        }
+        else{
+            if(current.data.compareTo(data) > 0){
+                if(current.left == null){
+                    current.left = new BinaryNode<T>(data);
+                    return;
+                }
+                else{
+                    insertHelper(current.left, data);
+                }
+            }
+            else
+                return;
+        }
+    }
 }
