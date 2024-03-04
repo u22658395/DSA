@@ -45,7 +45,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     public boolean isSuperficiallyBalanced() {
-        return false;
+        return superficialHelper(root);
     }
 
     public BinaryNode<T> findMax() {
@@ -234,5 +234,30 @@ public class BST<T extends Comparable<T>> {
         
         return getNodeHelper(current.right, data);
     }
+    private boolean superficialHelper(BinaryNode<T> node){
+        if (node == null) {
+            return true;
+        }
 
+       
+        int leftNodes = countNodes(node.left); // number of nodes in the left subtree
+        int rightNodes = countNodes(node.right); // number of nodes in the right subtree
+
+
+        boolean currentlyBalanced = leftNodes == rightNodes;
+
+        
+        boolean leftSubtreeBalance = superficialHelper(node.left); //check balance in left subtree
+        boolean rightSubtreeBalance = superficialHelper(node.right); //check balance in left subtree
+
+        return  currentlyBalanced && leftSubtreeBalance && rightSubtreeBalance;
+    }
+
+
+    private int countNodes(BinaryNode<T> node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + countNodes(node.left) + countNodes(node.right);
+    }
 }

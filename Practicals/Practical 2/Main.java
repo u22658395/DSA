@@ -10,6 +10,7 @@ public class Main {
         testNumLeaves(tree);
         testMinMax(tree);
         testGetNode(tree);
+        testBalance(tree);
 
     }
 
@@ -213,5 +214,32 @@ public class Main {
         
         System.out.println("get Node 81:"); //non-terminal node
         System.out.println(tree.getNode(81)+"\n");
+    }
+
+    private static void testBalance(BST<Integer> tree){
+        System.out.println("====Testing superficialBalance=========Testing superficialBalance=========Testing superficialBalance=========");
+
+        BST<Integer> t = new BST<Integer>();
+        System.out.println("Tree:\n"+t);
+        System.out.println(t.isSuperficiallyBalanced()+"\n");
+        
+        t.insert(1);
+        System.out.println("Tree:\n"+t);
+        System.out.println(t.isSuperficiallyBalanced()+"\n");
+
+        System.out.println("Tree:\n"+tree);
+        System.out.println(tree.isSuperficiallyBalanced()+"\n");
+        
+        tree.delete(51);
+        tree.delete(100);
+        tree.delete(103);
+        tree.delete(115);
+        tree.insert(50);
+        tree.insert(84);
+        
+        System.out.println("Tree:\n"+tree);
+        System.out.println(tree.isSuperficiallyBalanced()+"\n");
+
+
     }
 }
