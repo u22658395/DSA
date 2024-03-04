@@ -7,7 +7,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     public void delete(T data) {
-
+        root = deleteHelper(root, data);
     }
 
     public boolean contains(T data) {
@@ -99,4 +99,43 @@ public class BST<T extends Comparable<T>> {
             
         }
     }
+
+    private BinaryNode<T> deleteHelper(BinaryNode<T> current, T data) {
+        
+        if (current == null) {
+            return current;
+        }
+
+        
+        if (data.compareTo(current.data) < 0) {
+            current.left = deleteHelper(current.left, data);
+        } else if (data.compareTo(current.data) > 0) {
+            current.right = deleteHelper(current.right, data);
+        } else {
+            // If data is the same as the current node's data, delete
+
+            if (current.left == null) {   //has only a right child
+                return current.right;
+            } else if (current.right == null) {   //has only a left child
+                return current.left;
+            }
+
+            
+            // Node has both children, get the inorder successor (smallest in the right subtree)
+            current.data = leftMost(current.right);
+
+            // Delete the inorder successor
+            current.right = deleteHelper(current.right, current.data);
+        }
+
+        return current;
+    }
+
+    private T leftMost(BinaryNode<T> current) {
+        if (current.left == null) {
+            return current.data;
+        }
+        return leftMost(current.left);
+    }
+
 }
