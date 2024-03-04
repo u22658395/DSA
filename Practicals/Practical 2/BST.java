@@ -11,7 +11,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     public boolean contains(T data) {
-        return false;
+        return containsHelper(root, data);
     }
 
     public void insert(T data) {
@@ -138,4 +138,19 @@ public class BST<T extends Comparable<T>> {
         return leftMost(current.left);
     }
 
+    private boolean containsHelper(BinaryNode<T> current, T data){
+        if(current == null){
+            return false;
+        }
+
+        if(current.data.equals(data)){
+            return true;
+        }
+
+        if(current.data.compareTo(data) > 0){
+            return containsHelper(current.left, data);
+        }
+        
+        return containsHelper(current.right, data);
+    }
 }

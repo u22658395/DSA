@@ -1,17 +1,17 @@
 
 public class Main {
     public static void main(String[] args) {
-        testInsert_Delete();
+        BST<Integer> tree = new BST<Integer>();
+        System.out.println("Initial tree: \n"+ tree +"\n");
+        testInsert(tree);
+        testDelete(tree);
+        testContains(tree);
         
     }
 
-    private static void testInsert_Delete(){
+    private static void testInsert(BST<Integer> tree){
 
-
-        BST<Integer> tree = new BST<Integer>();
-        System.out.println("Initial tree: \n"+ tree);
-
-        //Inserting the same number
+        System.out.println("====Testing Insert=========Testing Insert=========Testing Insert=========Testing Insert=========Testing Insert=========Testing Insert=====");
         tree.insert(50);
         System.out.println("Insert 50:\n" + tree);
         tree.insert(50);
@@ -90,11 +90,10 @@ public class Main {
         tree.insert(100);
         System.out.println("Insert 100:\n" + tree);
 
-        // tree.insert(10);
-        // System.out.println("Insert 100:\n" + tree);
-        // tree.insert(100);
-        // System.out.println("Insert 100:\n" + tree+"\n");
+    }
 
+    public static void testDelete(BST<Integer> tree){
+        System.out.println("====Testing Delete=========Testing Delete=========Testing Delete=========Testing Delete=========Testing Delete=========Testing Delete=====");
 
         System.out.println("Delete 33:");
         tree.delete(33);
@@ -127,5 +126,27 @@ public class Main {
         System.out.println("Delete 1:");
         tree.delete(1);
         System.out.println(tree+"\n");
+    }
+
+    private static void testContains(BST<Integer> tree){
+        System.out.println("====Testing Contains=========Testing Contains=========Testing Contains=========Testing Contains=========Testing Contains=========Testing Contains=====");
+        System.out.println("Tree"+"\n");
+        System.out.println(tree+"\n");
+
+        System.out.println("Contains 1000:"); //value never been in the tree
+        System.out.println(tree.contains(1000)+"\n");
+        
+        System.out.println("Contains 33:"); //value deleted from the tree
+        System.out.println(tree.contains(33)+"\n");
+        
+        System.out.println("Contains 51:"); //the root
+        System.out.println(tree.contains(51)+"\n");
+        
+        System.out.println("Contains 100:");//leaf node
+        System.out.println(tree.contains(100)+"\n");
+        
+        System.out.println("Contains 81:"); //non-terminal node
+        System.out.println(tree.contains(81)+"\n");
+        
     }
 }
