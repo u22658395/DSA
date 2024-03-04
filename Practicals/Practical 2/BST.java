@@ -36,7 +36,7 @@ public class BST<T extends Comparable<T>> {
         return countLeafHelper(root);
     }
 
-    public BST<T> extractBiggestSuperBalancedSubTree() {
+    public BST<T> extractBiggestSuperficiallyBalancedSubTree() {
         return null;
     }
 
