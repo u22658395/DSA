@@ -1,6 +1,6 @@
 public class BST<T extends Comparable<T>> {
 
-    BinaryNode<T> root;
+    public BinaryNode<T> root;
 
     public BST() {
         root = null;
