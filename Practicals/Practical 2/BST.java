@@ -37,7 +37,11 @@ public class BST<T extends Comparable<T>> {
     }
 
     public BST<T> extractBiggestSuperficiallyBalancedSubTree() {
-        return null;
+        BinaryNode<T> newTreeRoot = extractHelper(root);
+        BST<T> newTree = new BST<T>();
+        newTree.root = newTreeRoot;
+
+        return newTree;
     }
 
     public BinaryNode<T> getNode(T data) {
@@ -245,17 +249,15 @@ public class BST<T extends Comparable<T>> {
         int rightNodes = countNodes(current.right); // number of nodes in the right subtree
 
 
-        boolean currentlyBalanced = leftNodes == rightNodes;
+        return leftNodes == rightNodes;
+        // boolean leftSubtreeBalance = superficialHelper(current.left); //check balance in left subtree
+        // boolean rightSubtreeBalance = superficialHelper(current.right); //check balance in left subtree
 
-        
-        boolean leftSubtreeBalance = superficialHelper(current.left); //check balance in left subtree
-        boolean rightSubtreeBalance = superficialHelper(current.right); //check balance in left subtree
-
-        return  currentlyBalanced && leftSubtreeBalance && rightSubtreeBalance;
+        // return  currentlyBalanced && leftSubtreeBalance && rightSubtreeBalance;
     }
 
 
-    private int countNodes(BinaryNode<T> current) {
+    public int countNodes(BinaryNode<T> current) {
         if (current == null) {
             return 0;
         }
@@ -271,5 +273,22 @@ public class BST<T extends Comparable<T>> {
         int rightSubHeight = getHeightHelper(current.right);
 
         return Math.max(leftSubHeight, rightSubHeight) + 1;
+    }
+
+    private BinaryNode<T> extractHelper(BinaryNode<T> root){
+        if(this.superficialHelper(root)){
+            return root;
+        }
+        BinaryNode<T> mostBalancedLeft = extractHelper(root.left);
+        BinaryNode<T> mostBalancedRight = extractHelper(root.right);
+
+        int leftNodes = this.countNodes(mostBalancedLeft);
+        int rightNodes = this.countNodes(mostBalancedRight);
+
+        if(rightNodes > leftNodes){
+            return mostBalancedRight;
+        }
+
+        return mostBalancedLeft;
     }
 }

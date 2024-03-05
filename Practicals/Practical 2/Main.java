@@ -12,6 +12,8 @@ public class Main {
         testGetNode(tree);
         testBalance(tree);
         testHeight(tree);
+        testExtractSuper(tree);
+        CheckCount();
 
     }
 
@@ -240,6 +242,11 @@ public class Main {
         
         System.out.println("Tree:\n"+tree);
         System.out.println(tree.isSuperficiallyBalanced()+"\n");
+        
+        tree.delete(50);
+        tree.delete(129);
+        System.out.println("Tree:\n"+tree);
+        System.out.println(tree.isSuperficiallyBalanced()+"\n");
     }
 
     private static void testHeight(BST<Integer> tree){
@@ -255,5 +262,60 @@ public class Main {
         
         System.out.println("Tree:\n"+tree);
         System.out.println(tree.getHeight()+"\n");    
+    }
+
+    private static void testExtractSuper(BST<Integer> tree){
+        System.out.println("====Testing ExtractSuperficialTree=========Testing ExtractSuperficialTree=========Testing ExtractSuperficialTree=========");
+
+        System.out.println("Tree:\n"+tree+"\n");
+        System.out.println("Superficial Tree:\n"+tree.extractBiggestSuperficiallyBalancedSubTree()+"\n");
+
+        tree.delete(129);
+        System.out.println("Tree:\n"+tree+"\n");
+        System.out.println("Superficial Tree:\n"+tree.extractBiggestSuperficiallyBalancedSubTree()+"\n");
+
+        tree.delete(50);
+        tree.delete(59);
+        tree.delete(63);
+        tree.delete(71);
+        tree.delete(106);
+        tree.delete(84);
+        tree.insert(83);
+        tree.insert(82);
+        tree.insert(84);
+        tree.insert(87);
+        tree.insert(90);
+        tree.insert(88);
+        tree.insert(92);
+        System.out.println("Tree:\n"+tree+"\n");
+        System.out.println("Superficial Tree:\n"+tree.extractBiggestSuperficiallyBalancedSubTree()+"\n");
+
+    }
+
+    private static void CheckCount(){
+        System.out.println("====checking count=========checking count=========checking count=========");
+        BST<Integer> tree = new BST<Integer>();
+        tree.insert(100);
+        System.out.println(tree);
+        System.out.println(tree.countNodes(tree.root) +"\n");
+        
+        
+        tree.insert(54);
+        tree.insert(32);
+        tree.insert(76);
+        tree.insert(15);
+        tree.insert(80);
+        System.out.println(tree);
+        System.out.println(tree.countNodes(tree.root) +"\n");
+        System.out.println("Balanced: "+ tree.isSuperficiallyBalanced()+"\n");
+        
+        tree.delete(100);
+        System.out.println(tree);
+        System.out.println(tree.countNodes(tree.root) +"\n");
+        System.out.println("Balanced: "+ tree.isSuperficiallyBalanced()+"\n");
+        
+        
+        
+
     }
 }
