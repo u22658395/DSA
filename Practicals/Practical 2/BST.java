@@ -161,7 +161,7 @@ public class BST<T extends Comparable<T>> {
     private String printSearchHelper(BinaryNode<T> node, T data){
         if(node == null)
         {
-            return null;
+            return "Null";
         }
 
         if(node.data.equals(data)){

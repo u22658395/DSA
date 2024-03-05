@@ -162,7 +162,7 @@ public class Main {
     }
 
     private static void testPrintSearch(BST<Integer> tree){
-        System.out.println("====Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=====");
+        System.out.println("====Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=========Testing PrintSearch=====\n");
 
         System.out.println("Search Path of 1000:"); //value never been in the tree
         System.out.println(tree.printSearchPath(1000)+"\n");
@@ -175,6 +175,9 @@ public class Main {
         
         System.out.println("Search Path of 100:");//leaf node
         System.out.println(tree.printSearchPath(100)+"\n");
+        
+        System.out.println("Search Path of 81:"); //non-terminal node
+        System.out.println(tree.printSearchPath(81)+"\n");
         
         System.out.println("Search Path of 81:"); //non-terminal node
         System.out.println(tree.printSearchPath(81)+"\n");
