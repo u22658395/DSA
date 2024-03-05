@@ -111,7 +111,6 @@ public class BST<T extends Comparable<T>> {
             return current;
         }
 
-        
         if (data.compareTo(current.data) < 0) {
             current.left = deleteHelper(current.left, data);
         } else if (data.compareTo(current.data) > 0) {
@@ -248,16 +247,11 @@ public class BST<T extends Comparable<T>> {
         int leftNodes = countNodes(current.left); // number of nodes in the left subtree
         int rightNodes = countNodes(current.right); // number of nodes in the right subtree
 
-
         return leftNodes == rightNodes;
-        // boolean leftSubtreeBalance = superficialHelper(current.left); //check balance in left subtree
-        // boolean rightSubtreeBalance = superficialHelper(current.right); //check balance in left subtree
-
-        // return  currentlyBalanced && leftSubtreeBalance && rightSubtreeBalance;
     }
 
 
-    public int countNodes(BinaryNode<T> current) {
+    private int countNodes(BinaryNode<T> current) {
         if (current == null) {
             return 0;
         }

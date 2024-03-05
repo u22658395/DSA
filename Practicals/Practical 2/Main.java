@@ -13,7 +13,6 @@ public class Main {
         testBalance(tree);
         testHeight(tree);
         testExtractSuper(tree);
-        CheckCount();
 
     }
 
@@ -247,6 +246,20 @@ public class Main {
         tree.delete(129);
         System.out.println("Tree:\n"+tree);
         System.out.println(tree.isSuperficiallyBalanced()+"\n");
+
+        BST<Integer> ownTree = new BST<Integer>();
+        ownTree.insert(100);        
+        ownTree.insert(54);
+        ownTree.insert(32);
+        ownTree.insert(76);
+        ownTree.insert(15);
+        ownTree.insert(80);
+        System.out.println("Tree:\n"+ownTree);
+        System.out.println("Balanced: "+ ownTree.isSuperficiallyBalanced()+"\n");
+        
+        ownTree.delete(100);
+        System.out.println("Tree:\n"+ownTree);
+        System.out.println("Balanced: "+ ownTree.isSuperficiallyBalanced()+"\n");
     }
 
     private static void testHeight(BST<Integer> tree){
@@ -289,33 +302,6 @@ public class Main {
         tree.insert(92);
         System.out.println("Tree:\n"+tree+"\n");
         System.out.println("Superficial Tree:\n"+tree.extractBiggestSuperficiallyBalancedSubTree()+"\n");
-
-    }
-
-    private static void CheckCount(){
-        System.out.println("====checking count=========checking count=========checking count=========");
-        BST<Integer> tree = new BST<Integer>();
-        tree.insert(100);
-        System.out.println(tree);
-        System.out.println(tree.countNodes(tree.root) +"\n");
-        
-        
-        tree.insert(54);
-        tree.insert(32);
-        tree.insert(76);
-        tree.insert(15);
-        tree.insert(80);
-        System.out.println(tree);
-        System.out.println(tree.countNodes(tree.root) +"\n");
-        System.out.println("Balanced: "+ tree.isSuperficiallyBalanced()+"\n");
-        
-        tree.delete(100);
-        System.out.println(tree);
-        System.out.println(tree.countNodes(tree.root) +"\n");
-        System.out.println("Balanced: "+ tree.isSuperficiallyBalanced()+"\n");
-        
-        
-        
 
     }
 }
