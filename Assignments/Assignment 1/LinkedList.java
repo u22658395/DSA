@@ -118,4 +118,25 @@ public class LinkedList {
             copy.append(curr.x, curr.y);
         }
     }
+
+    public void delete(int x, int y){
+        CoordinateNode node = head;
+        deleteHelper(x, y, node);
+    }
+
+    public void deleteHelper(int x, int y, CoordinateNode node){
+        if(node == null){
+            return;
+        }
+
+        if(node.next != null){
+            if(node.next.x == x && node.next.y == y){
+                node.next = node.next.next;
+                return;
+            }
+            else{
+                deleteHelper(x, y, node.next);
+            }
+        }
+    }
 }
