@@ -1,3 +1,4 @@
+
 public class SplayTree {
     public Node root;
     /*
@@ -95,11 +96,39 @@ public class SplayTree {
         return node;
     }
 
-    // public String sortByStudentNumber() {
-    // }
+    public String sortByStudentNumber() {
+        
+        if(root == null){
+            return "Empty Tree";
+        }
 
-    // public String sortByMark() {
-    // }
+        StringBuilder sb = new StringBuilder();
+        studentNumberHelper(root, sb);
+        return sb.toString();
+    }
+
+    public String sortByMark() {
+
+        String stringOfNodes = sortByStudentNumber();
+
+        int count = 0;
+        for (int i = 0; i < stringOfNodes.length(); i++) {
+            if (stringOfNodes.charAt(i) == '[') {
+                count++;
+            }
+        }
+
+        Node[] nodes = parseNodes(sortByStudentNumber(), count);
+
+        sortNodes(nodes);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nodes.length; i++) {
+            sb.append(nodes[i].toString());
+        }
+        
+        return sb.toString();
+    }
 
 
     // ======Helper functions======Helper functions======Helper functions======Helper functions======Helper functions======
@@ -142,19 +171,27 @@ public class SplayTree {
             if (x.parent.parent == null) {
                 if (x == x.parent.left) {
                     rightRotate(x.parent);
-                } else {
+                } 
+                else{
                     leftRotate(x.parent);
                 }
-            } else if (x == x.parent.left && x.parent == x.parent.parent.left) {
-                rightRotate(x.parent.parent);
-                rightRotate(x.parent);
-            } else if (x == x.parent.right && x.parent == x.parent.parent.right) {
-                leftRotate(x.parent.parent);
-                leftRotate(x.parent);
-            } else if (x == x.parent.right && x.parent == x.parent.parent.left) {
-                leftRotate(x.parent);
-                rightRotate(x.parent);
-            } else {
+            } 
+            else 
+                if (x == x.parent.left && x.parent == x.parent.parent.left) {
+                    rightRotate(x.parent.parent);
+                    rightRotate(x.parent);
+                }
+            else 
+                if (x == x.parent.right && x.parent == x.parent.parent.right) {
+                    leftRotate(x.parent.parent);
+                    leftRotate(x.parent);
+                } 
+            else 
+                if (x == x.parent.right && x.parent == x.parent.parent.left) {
+                    leftRotate(x.parent);
+                    rightRotate(x.parent);
+                }
+            else {
                 rightRotate(x.parent);
                 leftRotate(x.parent);
             }
@@ -168,11 +205,15 @@ public class SplayTree {
             y.right.parent = x;
         }
         y.parent = x.parent;
+        
         if (x.parent == null) {
             root = y;
-        } else if (x == x.parent.right) {
-            x.parent.right = y;
-        } else {
+        } 
+        else 
+            if (x == x.parent.right) {
+                x.parent.right = y;
+            } 
+        else {
             x.parent.left = y;
         }
         y.right = x;
@@ -183,45 +224,104 @@ public class SplayTree {
     private void leftRotate(Node x) {
         Node y = x.right;
         x.right = y.left;
+
         if (y.left != null) {
             y.left.parent = x;
         }
+        
         y.parent = x.parent;
+        
         if (x.parent == null) {
             root = y;
-        } else if (x == x.parent.left) {
-            x.parent.left = y;
-        } else {
+        } 
+        else 
+            if (x == x.parent.left) {
+                x.parent.left = y;
+            } 
+        else {
             x.parent.right = y;
         }
         y.left = x;
         x.parent = y;
     }
 
-    // private Node constructTree(char[] input, int index) {
-    //     if (index >= input.length || input[index] == '}') {
-    //         return null;
-    //     }
+    private void studentNumberHelper(Node curr, StringBuilder sb){
+        if(curr != null){
+            studentNumberHelper(curr.left, sb);
+            sb.append(curr.toString());
+            studentNumberHelper(curr.right, sb);
+        }
+    }
 
 
-    //     Node newNode = new Node(input[index]);
+    private static Node[] parseNodes(String input, int noOfNodes) {
+        String[] nodeStrings = splitNodes(input, "][", noOfNodes);
 
-    //     // Move to the next character after '{'
-    //     index++;
+        Node[] nodes = new Node[nodeStrings.length];
+        for (int i = 0; i < nodeStrings.length; i++) {
+            
+            String nodeString = nodeStrings[i].replace("[", "").replace("]", "");
+            String[] parts = splitNodes(nodeString, ":",noOfNodes);
+            int studentNumber = Integer.parseInt(parts[0].substring(1)); // Remove the "u" prefix
 
-    //     // Build the left subtree
-    //     newNode.left = constructTree(input, index);
+            Integer mark;
+            if(parts[1].split("%")[0].equals("null")){
+                mark = null;
+            }
+            else{
+                mark = Integer.parseInt(parts[1].split("%")[0]);
+            }
+            
+            nodes[i] = new Node(studentNumber, mark);
+        }
+        return nodes;
+    }
 
-    //     // Move to the next character after '}'
-    //     index++;
+    private static String[] splitNodes( String delim, String str, int noOfNodes) {
+        String[] partsArray = new String[noOfNodes];
+        int arrayIndex = 0;
+        int beginning = 0;
+        int index = str.indexOf(delim, beginning);
 
-    //     // Build the right subtree
-    //     newNode.right = constructTree(input, index);
+        while (index  != -1) {
+            partsArray[arrayIndex] = str.substring(beginning, index);
+            beginning = index + delim.length();
+            index = str.indexOf(delim, beginning);
+            arrayIndex++;
+        }
 
-    //     // Move to the next character after '}'
-    //     index++;
+        partsArray[arrayIndex] = str.substring(beginning);
+        return partsArray;
+    }
 
-    //     return newNode;
-    // }
+    private static void sortNodes(Node[] nodes) {
+        
+        for (int i = 0; i < nodes.length - 1; i++) {
+            for (int j = 0; j < nodes.length - i - 1; j++) {
+                if (compare(nodes[j], nodes[j+1]) > 0) {
+                    Node temp = nodes[j];
+                    nodes[j] = nodes[j + 1];
+                    nodes[j + 1] = temp;
+                }
+            }
+        }
+    }
 
+    private static int compare(Node node1, Node node2) {
+        
+        if (node1.mark == null && node2.mark == null) {
+            return Integer.compare(node1.studentNumber, node2.studentNumber);
+        } 
+
+        if (node1.mark == null) {
+            return -1;
+        }
+
+        if (node2.mark == null) {
+            return 1;
+        } 
+            
+        return Integer.compare(node1.mark, node2.mark);
+    
+    }
 }

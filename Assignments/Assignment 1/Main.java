@@ -6,18 +6,16 @@ public class Main {
         // System.out.println(m.validStarts(0, 0));
         
         
-        // testAppend();
-        // testContains();
-        // testLength();
-        // testReverse();
-        // testMaze();
+        testAppend();
+        testContains();
+        testLength();
+        testReverse();
+        testMaze();
+        testValidSolution();
+        testSolve(m);
+        testStarts(m);
+        // System.out.println(m.mazeString(0));n
         
-        // testValidSolution();
-
-        // System.out.println(m.mazeString(0));
-        System.out.println(m.solve(1, 1, 4, 0) +"\n");
-        System.out.println(m.solve(4, 0, 3, 3) +"\n");
-        System.out.println(m.solve(1, 1, 3, 3));
         
     }
     
@@ -63,6 +61,12 @@ public class Main {
         System.out.println("Linked List to append: " + null);
         ll.appendList(null);
         System.out.println(ll + "\n");
+        
+        
+        System.out.println("Append to empty list: " + l2);
+        ll = new LinkedList();
+        ll.appendList(l2);
+        System.out.println(ll);
     }
     
     private static void testContains(){
@@ -330,6 +334,29 @@ public class Main {
         System.out.println("Path: "+ l2);
         System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
         
+    }
+
+    private static void testSolve(Maze m) {
+        System.out.println(m.solve(1, 1, 4, 0) +"\n");
+        System.out.println(m.solve(4, 0, 3, 3) +"\n");
+        System.out.println(m.solve(1, 1, 3, 3)+ "\n");
+    }
+
+    private static void testStarts(Maze m){
+
+        System.out.println("====Test validStarts========Test validStarts========Test validStarts========Test validStarts====");
+
+        System.out.println("Destination is a wall:");
+        System.out.println(m.validStarts(4, 0)+"\n");
+        
+        System.out.println("Destination is out of x bounds:");
+        System.out.println(m.validStarts(5, 0)+"\n");
+        
+        System.out.println("Destination is out of y bounds:");
+        System.out.println(m.validStarts(2, 5)+"\n");
+        
+        System.out.println("Destination is valid:");
+        System.out.println(m.validStarts(2, 4)+"\n");
     }
 }
 

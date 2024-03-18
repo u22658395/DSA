@@ -56,32 +56,32 @@ public class Maze {
         return  (result.x == goalX && result.y == goalY);
         
         
-        
     }
 
     public String solve(int x, int y, int goalX, int goalY) {
     
-        String[] copyMap = new String[map.length];
-        for (int i = 0; i < map.length; i++) {
-            copyMap[i] = map[i];
-        }
+        String[] copy = null;
+        copy = mazeString(0, copy);
 
         LinkedList ll = new LinkedList();
 
         // Call the recursive solve function
-        boolean found = solveRecursive(x, y, x, y, goalX, goalY, copyMap, ll);
+        boolean found = solveHelper(x, y, x, y, goalX, goalY, copy, ll);
 
         // If a valid path is found, return the modified map; otherwise, return an error message
         if(found){
 
-            return String.join("\n", copyMap).concat("\n" + ll.toString()) ;
+            return String.join("\n", copy).concat("\n" + ll.toString()) ;
         }
 
         return "No valid solution exists";
     }
 
     public LinkedList validStarts(int x, int y) {
-        return null;
+
+        LinkedList ll = new LinkedList();
+        ll.head = startsHelper(0, 0, x, y);
+        return ll;
     }
 
 
@@ -133,7 +133,7 @@ public class Maze {
                     return list.head;
                 }
 
-                //make the head of the list head's next and search for head (look for duplicates)
+                //make the head of the list head's next and  head (look for duplicates)
                 CoordinateNode current = list.head;
                 list.head = list.head.next;
                 if(list.contains(current.x, current.y)) {
@@ -153,68 +153,82 @@ public class Maze {
 
     
 
-    private boolean solveRecursive(int startX, int startY, int x, int y, int goalX, int goalY, String[] copyMap, LinkedList ll) {
-
-        // Check if the current position is within the bounds of the map
-        if (x < 0 || x >= copyMap[0].length() || y < 0 || y >= copyMap.length) {
+    private boolean solveHelper(int startX, int startY, int x, int y, int goalX, int goalY, String[] copy, LinkedList ll) {
+        
+        if (x < 0 || x >= copy[0].length() || y < 0 || y >= copy.length) {
             return false;
         }
 
-        // Check if the current position is a wall or has already been visited
-        if (copyMap[y].charAt(x) == 'X' || copyMap[y].charAt(x) == '@' || copyMap[y].charAt(x) =='S') {
+        if (copy[y].charAt(x) == 'X' || copy[y].charAt(x) == '@' || copy[y].charAt(x) =='S') {
             return false;
         }
 
-        // Mark the current position as visited
         if(x == startX && y == startY){
-            copyMap[y] = copyMap[y].substring(0, x) + "S" + copyMap[y].substring(x + 1);
+            copy[y] = copy[y].substring(0, x) + "S" + copy[y].substring(x + 1);
             
         }else{
-            copyMap[y] = copyMap[y].substring(0, x) + "@" + copyMap[y].substring(x + 1);
+            copy[y] = copy[y].substring(0, x) + "@" + copy[y].substring(x + 1);
             
         }
         
         ll.append(x, y);
         
-        // Check if we have reached the goal
         if (x == goalX && y == goalY) {
-            copyMap[y] = copyMap[y].substring(0, x) + "E" + copyMap[y].substring(x + 1);
+            copy[y] = copy[y].substring(0, x) + "E" + copy[y].substring(x + 1);
             return true;
         }
 
-        // Try moving left
-        if (solveRecursive(startX, startY, x - 1, y, goalX, goalY, copyMap, ll)) {
+        if (solveHelper(startX, startY, x - 1, y, goalX, goalY, copy, ll)) {
             return true;
         }
 
-        // Try moving up
-        if (solveRecursive(startX, startY, x, y - 1, goalX, goalY, copyMap, ll)) {
+        if (solveHelper(startX, startY, x, y - 1, goalX, goalY, copy, ll)) {
             return true;
         }
 
-        // Try moving down
-        if (solveRecursive(startX, startY, x, y + 1, goalX, goalY, copyMap, ll)) {
+        if (solveHelper(startX, startY, x, y + 1, goalX, goalY, copy, ll)) {
             return true;
         }
 
-        // Try moving right
-        if (solveRecursive(startX, startY, x + 1, y, goalX, goalY, copyMap, ll)) {
+        if (solveHelper(startX, startY, x + 1, y, goalX, goalY, copy, ll)) {
             return true;
         }
 
-        // Backtrack: remove the "@" mark
-        copyMap[y] = copyMap[y].substring(0, x) + "-" + copyMap[y].substring(x + 1);
+        copy[y] = copy[y].substring(0, x) + "-" + copy[y].substring(x + 1);
         ll.delete(x, y);
 
         return false;
     }
 
-    public String mazeString(int index){
+    public String[] mazeString(int index, String[] copy){
+        if(index == 0){
+            copy = new String[map.length];
+        }
         if(index < map.length){
-            return map[index] + "\n" + mazeString(index+1);
+            copy[index] = map[index];
+            return mazeString(index+1, copy);
         }
 
-        return "";
+        return copy;
     }
+
+    public CoordinateNode startsHelper(int x, int y, int goalX, int goalY) {
+        if (y >= map.length) {
+            return null;
+        }
+
+        if (x >= map[y].length()) {
+            return startsHelper( 0, y + 1, goalX, goalY);
+        }
+
+        if (solve(x,y, goalX, goalY) != "No valid solution exists") {
+            CoordinateNode node = new CoordinateNode(x, y);
+            node.next = startsHelper( x + 1, y, goalX, goalY);
+            return node;
+        }
+
+        return startsHelper(x + 1, y, goalX, goalY);
+    }
+
 
 }
