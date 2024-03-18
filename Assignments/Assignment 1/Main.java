@@ -2,8 +2,7 @@ public class Main {
     // Output is in output.txt
     public static void main(String[] args) {
         Maze m = new Maze("mazeWithWalls.txt");
-        // System.out.println(m.solve(3, 3, 1, 0));
-        // System.out.println(m.validStarts(0, 0));
+       
         
         
         testAppend();
@@ -14,7 +13,12 @@ public class Main {
         testValidSolution();
         testSolve(m);
         testStarts(m);
-        // System.out.println(m.mazeString(0));n
+        System.out.println();
+
+        Maze og = new Maze("input.txt");
+        System.out.println(og.solve(3, 3, 1, 0));
+        System.out.println(og.validStarts(0, 0));
+
         
         
     }

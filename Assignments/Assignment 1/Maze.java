@@ -61,7 +61,7 @@ public class Maze {
     public String solve(int x, int y, int goalX, int goalY) {
     
         String[] copy = null;
-        copy = mazeString(0, copy);
+        copy = mapToCopy(0, copy);
 
         LinkedList ll = new LinkedList();
 
@@ -133,7 +133,7 @@ public class Maze {
                     return list.head;
                 }
 
-                //make the head of the list head's next and  head (look for duplicates)
+                
                 CoordinateNode current = list.head;
                 list.head = list.head.next;
                 if(list.contains(current.x, current.y)) {
@@ -200,19 +200,19 @@ public class Maze {
         return false;
     }
 
-    public String[] mazeString(int index, String[] copy){
+    private String[] mapToCopy(int index, String[] copy){
         if(index == 0){
             copy = new String[map.length];
         }
         if(index < map.length){
             copy[index] = map[index];
-            return mazeString(index+1, copy);
+            return mapToCopy(index+1, copy);
         }
 
         return copy;
     }
 
-    public CoordinateNode startsHelper(int x, int y, int goalX, int goalY) {
+    private CoordinateNode startsHelper(int x, int y, int goalX, int goalY) {
         if (y >= map.length) {
             return null;
         }
