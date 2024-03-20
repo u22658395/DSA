@@ -1,28 +1,209 @@
 public class Main {
     // Output is in output.txt
     public static void main(String[] args) {
-        Maze m = new Maze("mazeWithWalls.txt");
-       
-        
-        
+        Maze n = new Maze("input.txt");
         testAppend();
         testContains();
         testLength();
         testReverse();
         testMaze();
-        testValidSolution();
+        System.out.println();
+        
+        Maze m = new Maze("maze2_0.txt");
+        System.out.println("====MAP=====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP==\n");
+        System.out.println(m+ "\n");
+        System.out.println("====MAP=====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP====MAP==\n");
+        testValidSolution2_0(m);
         testSolve(m);
         testStarts(m);
-        System.out.println();
-
-        Maze og = new Maze("input.txt");
-        System.out.println(og.solve(3, 3, 1, 0));
-        System.out.println(og.validStarts(0, 0));
-
+        
+        
         
         
     }
+
+//test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==test 2.0==
+
+    private static void testValidSolution2_0(Maze m){
+        System.out.println("====test validSolution 2.0=====test validSolution 2.0=====test validSolution 2.0=====test validSolution 2.0=====");
+        System.out.println("valid Path:\n"+ validPath());
+        System.out.println("validity: " + m.validSolution(0, 0, 11, 4, validPath()) +"\n");
+        
+        System.out.println("Empty Path:\n"+ emptyPath());
+        System.out.println("validity: " + m.validSolution(0, 0, 11, 4, emptyPath()) +"\n");
+
+        System.out.println("Wall at start of Path:\n"+ startWallPath());
+        System.out.println("validity: " + m.validSolution(0, 2, 11, 4, startWallPath()) +"\n");
+
+        System.out.println("Wall at end of Path:\n"+ endWallPath());
+        System.out.println("validity: " + m.validSolution(0, 0, 12, 4, endWallPath()) +"\n");
+
+        System.out.println("diagonal Path:\n"+ diagonalPath());
+        System.out.println("validity: " + m.validSolution(0, 0, 12, 4, diagonalPath()) +"\n");
+
+        System.out.println("More than one step X Path:\n"+ xStepPath());
+        System.out.println("validity: " + m.validSolution(0, 0, 12, 4, xStepPath()) +"\n");
+
+        System.out.println("More than one step Y Path:\n"+ yStepPath());
+        System.out.println("validity: " + m.validSolution(0, 0, 12, 4, yStepPath()) +"\n");
+
+    }
     
+
+    private static LinkedList validPath(){
+        
+        LinkedList ll = new LinkedList();
+        ll.append(0, 0);
+        ll.append(0, 1);
+        ll.append(1, 1);
+        ll.append(2, 1);
+        ll.append(3, 1);
+        ll.append(3, 2);
+        ll.append(3,3);
+        ll.append(4,3);
+        ll.append(5,3);
+        ll.append(6,3);
+        ll.append(7,3);
+        ll.append(7,4);
+        ll.append(7,5);
+        ll.append(8,5);
+        ll.append(9,5);
+        ll.append(10,5);
+        ll.append(10,4);
+        ll.append(11,4);
+        return ll;
+    }
+
+    private static LinkedList emptyPath(){
+        
+        LinkedList ll = new LinkedList();
+        return ll;
+    }
+    
+    private static LinkedList endWallPath(){
+        
+        LinkedList ll = new LinkedList();
+        ll.append(0, 0);
+        ll.append(0, 1);
+        ll.append(1, 1);
+        ll.append(2, 1);
+        ll.append(3, 1);
+        ll.append(3, 2);
+        ll.append(3,3);
+        ll.append(4,3);
+        ll.append(5,3);
+        ll.append(6,3);
+        ll.append(7,3);
+        ll.append(7,4);
+        ll.append(7,5);
+        ll.append(8,5);
+        ll.append(9,5);
+        ll.append(10,5);
+        ll.append(10,4);
+        ll.append(11,4);
+        ll.append(12,4);
+        return ll;
+    }
+    
+    private static LinkedList startWallPath(){
+        
+        LinkedList ll = new LinkedList();
+        ll.append(0, 2);
+        ll.append(0, 1);
+        ll.append(1, 1);
+        ll.append(2, 1);
+        ll.append(3, 1);
+        ll.append(3, 2);
+        ll.append(3,3);
+        ll.append(4,3);
+        ll.append(5,3);
+        ll.append(6,3);
+        ll.append(7,3);
+        ll.append(7,4);
+        ll.append(7,5);
+        ll.append(8,5);
+        ll.append(9,5);
+        ll.append(10,5);
+        ll.append(10,4);
+        ll.append(11,4);
+        ll.append(12,4);
+        return ll;
+        
+    }
+
+    private static LinkedList diagonalPath(){
+        
+        LinkedList ll = new LinkedList();
+        ll.append(0, 0);
+        ll.append(0, 1);
+        ll.append(1, 1);
+        ll.append(2, 1);
+        ll.append(3, 1);
+        ll.append(3, 2);
+        ll.append(3,3);
+        ll.append(4,3);
+        ll.append(5,3);
+        ll.append(6,3);
+        ll.append(7,3);
+        ll.append(7,4);
+        ll.append(7,5);
+        ll.append(8,5);
+        ll.append(9,5);
+        ll.append(10,5);
+        ll.append(11,4);
+        return ll;
+    }
+
+
+
+    private static LinkedList xStepPath(){
+        
+        LinkedList ll = new LinkedList();
+        ll.append(0, 0);
+        ll.append(0, 1);
+        ll.append(2, 1);
+        ll.append(3, 1);
+        ll.append(3, 2);
+        ll.append(3,3);
+        ll.append(4,3);
+        ll.append(5,3);
+        ll.append(6,3);
+        ll.append(7,3);
+        ll.append(7,4);
+        ll.append(7,5);
+        ll.append(8,5);
+        ll.append(9,5);
+        ll.append(10,5);
+        ll.append(10,4);
+        ll.append(11,4);
+        return ll;
+    }
+
+    private static LinkedList yStepPath(){
+        
+        LinkedList ll = new LinkedList();
+        ll.append(0, 0);
+        ll.append(0, 1);
+        ll.append(1, 1);
+        ll.append(2, 1);
+        ll.append(3, 1);
+        ll.append(3,3);
+        ll.append(4,3);
+        ll.append(5,3);
+        ll.append(6,3);
+        ll.append(7,3);
+        ll.append(7,4);
+        ll.append(7,5);
+        ll.append(8,5);
+        ll.append(9,5);
+        ll.append(10,5);
+        ll.append(10,4);
+        ll.append(11,4);
+        return ll;
+    }
+
+    //==test Input.txt====test Input.txt====test Input.txt====test Input.txt====test Input.txt====
+
     
     private static void testAppend(){
         System.out.println("=========Test Append functions============Test Append functions============Test Append functions============Test Append functions============");
@@ -60,10 +241,6 @@ public class Main {
         ll.append(3, 1);
         System.out.println("Linked List to append to: " + ll);
         ll.appendList(l2);
-        System.out.println(ll + "\n");
-        
-        System.out.println("Linked List to append: " + null);
-        ll.appendList(null);
         System.out.println(ll + "\n");
         
         
@@ -153,193 +330,6 @@ public class Main {
         System.out.println(k + "\n");
     }
     
-    
-    private static void testValidSolution(){
-        System.out.println("=========Test ValidSolution============Test ValidSolution============Test ValidSolution============Test ValidSolution============");
-        
-        Maze m = new Maze("input.txt");
-        
-        //valid path
-        System.out.println("valid path");
-        LinkedList l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //wrong starting point
-        System.out.println("wrong starting point");
-        l2 = new LinkedList(2,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //wrong destination point
-        System.out.println("wrong destination point");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(2,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //duplicate
-        System.out.println("duplicate");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(2,2);
-        l2.append(3,1);
-        l2.append(3,2);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //more than 2 steps in X direction
-        System.out.println("more than 2 steps in X direction");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        // l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //more than 2 steps in Y direction
-        System.out.println("more than 2 steps in Y direction");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        // l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //diagonal movement
-        System.out.println("diagonal movement right up");
-        l2 = new LinkedList(0,4);
-        // l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-        //diagonal movement
-        System.out.println("diagonal movement left down ");
-        l2 = l2.reversed();
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(4, 0, 1, 3, l2)+"\n");
-        
-        
-        //diagonal movement
-        System.out.println("diagonal movement right down");
-        l2 = new LinkedList(0,0);
-        l2.append(1,1);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 0, 1, 1, l2)+"\n");
-        
-        System.out.println("diagonal movement left up");
-        l2 = new LinkedList(4,4);
-        l2.append(3,3);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(4, 4, 3, 3, l2)+"\n");
-        
-        // x-index outside map
-        System.out.println("out of bounds x");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        l2.append(5,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 5, 0, l2)+"\n");
-
-        //y-index outside map
-        System.out.println("out of bounds y");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        l2.append(4,-1);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, -1, l2)+"\n");
-
-        //goal coordinate are a proper subset of part
-        System.out.println("goal coordinates are a proper subset of part");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 3, 1, l2)+"\n");
-        
-        //wall
-        m = new Maze("mazeWithWalls.txt");
-        System.out.println("wall");
-        l2 = new LinkedList(0,4);
-        l2.append(1,4);
-        l2.append(1,3);
-        l2.append(1,2);
-        l2.append(2,2);
-        l2.append(3,2);
-        l2.append(3,1);
-        l2.append(3,0);
-        l2.append(4,0);
-        System.out.println("Path: "+ l2);
-        System.out.println("Validity: "+ m.validSolution(0, 4, 4, 0, l2)+"\n");
-        
-    }
-
     private static void testSolve(Maze m) {
         System.out.println(m.solve(1, 1, 4, 0) +"\n");
         System.out.println(m.solve(4, 0, 3, 3) +"\n");
@@ -351,16 +341,18 @@ public class Main {
         System.out.println("====Test validStarts========Test validStarts========Test validStarts========Test validStarts====");
 
         System.out.println("Destination is a wall:");
-        System.out.println(m.validStarts(4, 0)+"\n");
+        System.out.println(m.validStarts(4, 4)+"\n");
         
         System.out.println("Destination is out of x bounds:");
-        System.out.println(m.validStarts(5, 0)+"\n");
+        System.out.println(m.validStarts(12, 4)+"\n");
         
         System.out.println("Destination is out of y bounds:");
-        System.out.println(m.validStarts(2, 5)+"\n");
-        
+        System.out.println(m.validStarts(3, 7)+"\n");
+       
         System.out.println("Destination is valid:");
-        System.out.println(m.validStarts(2, 4)+"\n");
+        System.out.println(m.validStarts(11, 4)+"\n");
     }
+
+    //====testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=========testing 2.0=====
 }
 

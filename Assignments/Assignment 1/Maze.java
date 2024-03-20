@@ -1,14 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Maze {
     private String[] map;
 
     public Maze(String filename) {
+
+        File reader = new File(filename);
         try{
-            FileReader reader = new FileReader(filename);
             Scanner scanner = new Scanner(reader);
             
             int rows = Integer.parseInt(scanner.nextLine());
@@ -70,8 +70,9 @@ public class Maze {
 
         // If a valid path is found, return the modified map; otherwise, return an error message
         if(found){
-
-            return String.join("\n", copy).concat("\n" + ll.toString()) ;
+            String out = "Solution\n";
+            out+=(String.join("\n", copy).concat("\n" + ll.toString()));
+            return out;
         }
 
         return "No valid solution exists";
@@ -155,7 +156,11 @@ public class Maze {
 
     private boolean solveHelper(int startX, int startY, int x, int y, int goalX, int goalY, String[] copy, LinkedList ll) {
         
-        if (x < 0 || x >= copy[0].length() || y < 0 || y >= copy.length) {
+        if(y < 0 || y >= copy.length){
+            return false;
+        }
+
+        if (x < 0 || x >= copy[y].length() ) {
             return false;
         }
 
